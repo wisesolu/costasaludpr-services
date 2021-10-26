@@ -1,0 +1,38 @@
+Upload files in Github must be in the following order.
+In this way to manage the limitation of 100 files maximun for each upload.
+
+For ks_dashboard_ninja:
+
+1 - ks_dashboard_ninja
+
+2 - static 
+under ks_dashboard_ninja
+
+3 - description
+under static
+
+3.1 - features and global_filter
+under description\assets\images
+
+
+4 - images
+under description
+
+5 - preview_images
+under description
+
+For ks_dn_advance:
+
+1 - ks_dn_advance
+
+2 - static
+under ks_dn_advance
+
+3 - description
+under static
+
+4 - images
+under description
+
+5 - preview_images
+under description
