@@ -185,10 +185,13 @@ class ResUsers(models.Model):
     '''
     @api.model
     def remind_expiring_passwords(self):
+        days_till_reminder = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reminder', 0))
+        days_till_reset = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reset', 0))
+        days_till_email = days_till_reset - days_till_reminder
+        if days_till_reminder == 0 or days_till_reset == 0:
+            return
+
         for user in self.search([]):
-            days_till_reminder = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reminder', 0))
-            days_till_reset = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reset', 0))
-            days_till_email = days_till_reset - days_till_reminder
             expiration_date = user.date_password_changed + timedelta(days=days_till_reset)
 
             if user.date_password_changed + timedelta(days=days_till_email) <= datetime.now():

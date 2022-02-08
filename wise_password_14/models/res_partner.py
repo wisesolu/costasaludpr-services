@@ -6,7 +6,7 @@ from odoo.exceptions import UserError
 from odoo.addons.auth_signup.models.res_partner import SignupError, now
 
 
-class ResUsers(models.Model):
+class ResPartners(models.Model):
     _inherit = 'res.partner'
 
     '''
