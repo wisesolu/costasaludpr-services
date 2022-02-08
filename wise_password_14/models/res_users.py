@@ -185,13 +185,10 @@ class ResUsers(models.Model):
     '''
     @api.model
     def remind_expiring_passwords(self):
-        days_till_reminder = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reminder', 0))
-        days_till_reset = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reset', 0))
-        days_till_email = days_till_reset - days_till_reminder
-        if days_till_reminder == 0 or days_till_reset == 0:
-            return
-
         for user in self.search([]):
+            days_till_reminder = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reminder', 0))
+            days_till_reset = int(self.env['ir.config_parameter'].sudo().get_param('wise.pwd_num_days_till_reset', 0))
+            days_till_email = days_till_reset - days_till_reminder
             expiration_date = user.date_password_changed + timedelta(days=days_till_reset)
 
             if user.date_password_changed + timedelta(days=days_till_email) <= datetime.now():
@@ -233,28 +230,27 @@ class ResUsers(models.Model):
 
         errs = []
         if min_len and len(password) < int(min_len):
-            errs.append(f'a length equal to or greater than {min_len} characters')
+            errs.append(f'una longitud mayor que {min_len} caracteres')
         if include_num and not any(char.isdigit() for char in password):
-            errs.append('at least 1 number')
+            errs.append('un número')
         if include_upper and not any(char.isupper() for char in password):
-            errs.append('at least 1 upper case character')
+            errs.append('una minúscula')
         if include_lower and not any(char.islower() for char in password):
-            errs.append('at least 1 lower case character')
+            errs.append('una mayúscula')
         if include_special and all(char.isalnum() or char.isspace() for char in password):
-            errs.append('at least 1 special character (Non alphanumeric)')
+            errs.append('un cáracter especial (!”#$%&/)')
         '''
         Since exceptions can't format new lines, 
         make the errors into a sentence
         '''
         if len(errs):
-            msg = 'Password must have '
+            msg = 'La contraseña debe tener '
             if len(errs) == 1:
                 msg += errs[0]
             else:
                 for i in errs[:-1]:
-                    print(i)
                     msg += i + ', '
-                msg += f'and {errs[-1]}.'
+                msg += f'y {errs[-1]}.'
             raise UserError(_(msg))
 
     '''
