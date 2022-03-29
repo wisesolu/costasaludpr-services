@@ -3,12 +3,13 @@
     'name': "Wise Solutions: Session Timeout",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Allow Admin to set session timeout for all users""",
 
     'description': """
         Task ID: 2480404
-        Long description of module's purpose
+        When a user is logged into an Odoo DB, the Odoo Server stores a "session" and until that is deleted or the user clears their browser cache, they will never have to log in again. 
+        With this behavior, the system doesn’t update the field Latest authentication and the user doesn’t need to type the password. 
+        The client needs to know when was the last time that a user was logged in and ask for the password after a session is finished.
     """,
 
     'author': "Odoo Inc.",
@@ -16,7 +17,7 @@
     'category': 'Customizations/Studio',
     'license': 'OEEL-1',
     'version': '0.1',
-    'depends': ['base'],
+    'depends': ['base','base_setup'],
     'data': [
         'views/res_config_settings.xml',
     ],
