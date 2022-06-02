@@ -17,8 +17,9 @@
     'category': 'Customizations/Studio',
     'license': 'OEEL-1',
     'version': '0.1',
-    'depends': ['base','base_setup'],
+    'depends': ['base','base_setup', 'web'],
     'data': [
         'views/res_config_settings.xml',
+        'views/webclient_templates.xml',
     ],
 }

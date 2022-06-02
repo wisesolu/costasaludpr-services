@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_common_wisesolutions_web_timeout" name="Wisesolutions Timeout Common Assets" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/wisesolutions_web_timeout/static/src/js/services/crash_manager.js"></script>
+        </xpath>
+    </template>
+</odoo>
