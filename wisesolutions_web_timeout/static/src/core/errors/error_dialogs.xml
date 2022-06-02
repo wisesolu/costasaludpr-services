@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="wisesolutions_web_timeout.SessionExpiredDialogBody">
+        <xpath expr="//p" position="replace">
+            <p style="white-space: pre-wrap;">
+              Success
+            </p>
+<!--             <p style="white-space: pre-wrap;" t-esc="env['ir.config_parameter'].sudo().get_param('timeout_msg')"/> -->
+        </xpath>
+    </t>
+</templates>
