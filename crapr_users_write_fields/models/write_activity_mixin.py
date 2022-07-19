@@ -10,8 +10,8 @@ class WriteActivityMixin(models.AbstractModel):
     _description = 'Write Activity Mixin'
 
     # Field Declarations
-    custom_write_uid = fields.Many2one('res.users', string='Last Updated by', copy=True, store=True)
-    custom_write_date = fields.Datetime(string='Last Updated on', copy=True, store=True)
+    custom_write_uid = fields.Many2one('res.users', string='Data Last Updated by', copy=True, store=True)
+    custom_write_date = fields.Datetime(string='Data Last Updated on', copy=True, store=True)
 
     def write(self, vals):
         """
